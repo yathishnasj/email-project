@@ -1,9 +1,8 @@
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_BASE_URL = "https://email-project-api.onrender.com"
+const API_BASE_URL = "https://email-project-api.onrender.com";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -48,6 +47,7 @@ function App() {
 
       fetchHistory();
     } catch (error) {
+      console.log("Email verification error:", error);
       setResult("Error verifying email");
     } finally {
       setLoading(false);
@@ -60,13 +60,14 @@ function App() {
       setLoading(true);
 
       const response = await axios.post(
-       API_BASE_URL + "/api/verify-domain",
+        API_BASE_URL + "/api/verify-domain",
         { domain }
       );
 
       setResult(response.data.message);
       fetchHistory();
     } catch (error) {
+      console.log("Domain verification error:", error);
       setResult("Error verifying domain");
     } finally {
       setLoading(false);
@@ -86,6 +87,7 @@ function App() {
       setResult(response.data.message);
       fetchHistory();
     } catch (error) {
+      console.log("DNS verification error:", error);
       setResult("Error checking DNS");
     } finally {
       setLoading(false);
@@ -115,6 +117,7 @@ function App() {
 
       fetchHistory();
     } catch (error) {
+      console.log("MX verification error:", error);
       setResult("Error checking MX records");
       setMxRecords([]);
     } finally {
@@ -126,12 +129,13 @@ function App() {
   const deleteRecord = async (id) => {
     try {
       await axios.delete(
-       API_BASE_URL + "/api/history/" + id
+        API_BASE_URL + "/api/history/" + id
       );
 
       setResult("Record deleted successfully!");
       fetchHistory();
     } catch (error) {
+      console.log("Delete error:", error);
       setResult("Error deleting record");
     }
   };
@@ -148,12 +152,13 @@ function App() {
 
     try {
       const response = await axios.delete(
-       API_BASE_URL + "/api/history"
+        API_BASE_URL + "/api/history"
       );
 
       setResult(response.data.message);
       fetchHistory();
     } catch (error) {
+      console.log("Delete history error:", error);
       setResult("Error deleting verification history");
     }
   };
