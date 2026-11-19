@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_BASE_URL = "https://email-project-api.onrender.com";
+const API_BASE_URL = "https://email-project-u2nk.onrender.com";
 
 function App() {
   const [email, setEmail] = useState("");
