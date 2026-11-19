@@ -1,4 +1,4 @@
-```jsx
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
@@ -19,7 +19,7 @@ function App() {
   const fetchHistory = async () => {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/api/history`
+        API_BASE_URL + "/api/history"
       );
 
       setHistory(response.data.data);
@@ -38,7 +38,7 @@ function App() {
       setLoading(true);
 
       const response = await axios.post(
-        `${API_BASE_URL}/api/verify-email`,
+        API_BASE_URL + "/api/verify-email",
         { email }
       );
 
@@ -60,7 +60,7 @@ function App() {
       setLoading(true);
 
       const response = await axios.post(
-        `${API_BASE_URL}/api/verify-domain`,
+       API_BASE_URL + "/api/verify-domain",
         { domain }
       );
 
@@ -79,7 +79,7 @@ function App() {
       setLoading(true);
 
       const response = await axios.post(
-        `${API_BASE_URL}/api/verify-domain-dns`,
+        API_BASE_URL + "/api/verify-domain-dns",
         { domain }
       );
 
@@ -99,7 +99,7 @@ function App() {
       setMxRecords([]);
 
       const response = await axios.post(
-        `${API_BASE_URL}/api/verify-mx`,
+        API_BASE_URL + "/api/verify-mx",
         { domain }
       );
 
@@ -126,7 +126,7 @@ function App() {
   const deleteRecord = async (id) => {
     try {
       await axios.delete(
-        `${API_BASE_URL}/api/history/${id}`
+       API_BASE_URL + "/api/history/" + id
       );
 
       setResult("Record deleted successfully!");
@@ -148,7 +148,7 @@ function App() {
 
     try {
       const response = await axios.delete(
-        `${API_BASE_URL}/api/history`
+       API_BASE_URL + "/api/history"
       );
 
       setResult(response.data.message);
